@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">		
+		<link href="index.css" rel="stylesheet">
+		<script src="jquery.js"></script>
+		<script src="progress.js"></script>
+		<script src="button.js"></script>
+		<script src="rate.js"></script>
+		<script src="index.js"></script>
+	</head>
+	<body>
+	<h1>Тестовое задание по вёрстке</h1>
+	<p>Вместо текста по теме, связанной с профессией, я решил разметить здесь описание выполненненного задания, чтобы не создавать для этого отдельный документ. Задание выполнялось с использованием библиотеки <strong>JQuery</strong>.</p>
+	<h2>"Контрол оценки"</h2>
+	<p>Код "контрола оценки" (включая и связанные с ним таблицы стилей) полснотью раполагается в файле <strong>rate.js</strong>. Такой подход позволяет легко встраивать данный элемент управления на страницы. Для избежания конфликта имён с уже существующими элементами все перемнные и функции объявлены внутри одного объекта, а к идентификаторам и именам классов элемнетов страницы добавлется префикс, объявленный в переменной <strong>prefix</strong>. Для изменения иконок необходимо укзать новые ссылки в переменных <strong>checkedImg</strong> и <strong>uncheckedImg</strong>. Записав в перемнную <strong>callfunc</strong> функцию, можно определить действия выполняемые после изменения оценки.Все оценки хранятся в массиве <strong>marks</strong>, который заполняется функцией <strong>getMarks()</strong>. Для встраивания данного элемента в страницу необходимо выполнить код как в примере ниже:</p>
+	<div id="rateExample">
+		<div class="codeContainer">
+			<div class="codeHeader">Код для добавления "контрола оценки"</div>
+			<div class="codeText">
+				Rate.getMarks();<br>
+				Rate.placeMarkControl($('#rateElement0'),0);<br>
+				Rate.placeMarkControl($('#rateElement1'),1);<br>
+				Rate.placeMarkControl($('#rateElement2'),2);<br>
+			</div>
+		</div>
+		<div id="delimeter"></div>
+		<div class="codeContainer">
+			<div class="codeHeader">Добавленные элемнеты</div>
+			<div class="codeText">
+				<div id="rateElement0"></div>
+				<div id="rateElement1"></div>
+				<div id="rateElement2"></div>
+			</div>
+		</div>	
+	</div>
+	<h2>Прогресс-бар</h2>
+	<p>Для прогресс-бара использовался тот же подход, что и для предыдущего элемента, с тем лишь отличием, что описание элемента производится не в объекте а в функции - конструкторе, что позволяет создавать несколько независимых прогресс-баров. Возможно использование двух типов данного элемента: первый отображает прогресс в процентах, второй в единицах от какого-то максимального числа.Ниже приведн пример использования прогресс-баров обоих типов. Обновление значений осуществляет функция <strong>markChanged()</strong>, описанная в файле <strong>index.js</strong>, в соответствии с рейтингом, установленным в предыдущем примере.</p>
+	<div id="progressExample">
+		<div class="codeContainer">
+			<div class="codeHeader">Код для добавления прогресс-бара</div>
+			<div class="codeText">
+				PrBar1 = new ProgBar($('#PrElement1'),'proc');<br>
+				PrBar2 = new ProgBar($('#PrElement2'),'counter');<br>
+				Rate.callfunc=markChanged;<br>
+			</div>
+		</div>
+		<div id="delimeter"></div>
+		<div class="codeContainer">
+			<div class="codeHeader">Пример отображения прогресс-бара</div>
+			<div class="codeText">
+				<div id="PrElement1"></div>
+				<div id="PrElement2"></div>
+			</div>
+		</div>	
+	</div>
+	<h2>Кнопки</h2>
+	<p>Кнопки реализованы по тем же принципам, что и прогресс-бар. В примере ниже кнопки позволяют влиять на прогресс-бар, показывающий средний рейтинг, установленный в первом примере. Возможно использование трёх типов кнопок: <strong>button</strong> - классическая кнопка, <strong>trigger</strong> - кнопка-переключатель, сохраняющая своё состояние, и <strong>radio</strong> - радиокнопки, который позволяют выбирать из множества вариантов только один. Важным аспектом использования радиокнопок является то, что каждому объекту кнопки необходимо указать массив <strong>radioGroup</strong>, в котором содержатся все объекты радиокнопок одной группы.</p>	
+	<div id="btnExample">
+		<div class="codeContainer">
+			<div class="codeHeader">Код для добавления кнопок</div>
+			<div class="codeText">
+				PrBar3 = new ProgBar($('#PrElement3'),'counter');<br>
+				Btn1 = new MyButton($('#Btn1'),'button','Сбросить рейтинг',resetRate);<br>
+				Btn2 = new MyButton($('#Btn2'),'trigger','"Заморозить" прогресс-бар');<br>
+				RBtn[0] = new MyButton($('#RBtn'),'radio','Зелёный',changeColor);	<br>
+				RBtn[1] = new MyButton($('#RBtn'),'radio','Красный',changeColor);<br>
+				RBtn[2] = new MyButton($('#RBtn'),'radio','Серый',changeColor);<br>
+				for(var i=0;i&lt;RBtn.length;i++)<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;RBtn[i].radioGroup=RBtn;<br>
+				$('#'+RBtn[0].prefix+'_'+RBtn[0].index).click();
+			</div>
+		</div>
+		<div id="delimeter"></div>
+		<div class="codeContainer">
+			<div class="codeHeader">Пример Работы с кнопками</div>
+			<div class="codeText">
+				<div id="PrElement3"></div>
+				<div id="Btn1"></div>
+				<div id="Btn2"></div>
+				<div id="RBtn"></div>
+			</div>
+		</div>	
+	</div>
+	<h2>Список из иконок</h2>
+	<p>Список из иконок приведён ниже и в дополнительном пояснении не нуждается.</p>
+	<ul id="IconList">
+		<li><div><span id="LimeText">Ch</span><span id="RedText">ro</span><span id="YellowText">me</span></div><img src="Chrome.png"></li>
+		<li><div><span id="OrangeText">Firefox</span></div><img src="Firefox.png"></li>
+		<li><div><span id="RedText">Opera</span></div><img src="Opera.png"></li>
+		<li><div><span id="GrayText">Safari</span></div><img src="Safari.png"></li>
+		<li id="IEItem" ><div><span id="BlueText">Internet Explorer</span></div><img src="IE.png"></li>
+	</ul>
+	</body>
+</html>

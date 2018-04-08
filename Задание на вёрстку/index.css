@@ -1,0 +1,81 @@
+﻿#IconList li
+{
+	display:inline-block;
+	width: 128px;
+	height: 128px;
+}
+#IconList li img
+{
+	width: 100%;
+}
+#IconList li div
+{
+	display: none;
+	width: 128px;
+	text-align:center;	
+	line-height:128px;	
+}
+#IEItem
+{
+	margin-left:auto;
+	float:right;
+}
+#LimeText
+{
+	color:lime;
+}
+#RedText
+{
+	color:red;
+}
+#YellowText
+{
+	color:yellow;
+}
+#OrangeText
+{
+	color:orange;
+}
+#GrayText
+{
+	color:gray;
+}
+#BlueText
+{
+	color:blue;
+}
+h1, h2, p
+{
+	font-family: sans-serif;
+}
+#rateExample,#progressExample,#btnExample
+{
+	display: table;
+	width:100%;
+}
+#delimeter
+{
+	width:10px;
+}
+.codeContainer 
+{
+	display: table-cell;
+	border: 1px solid black;
+	height: 100%;
+	background-color: #DDD;
+}
+.codeContainer div
+{
+	display: block;	
+}
+.codeHeader
+{
+	background-color: #999;
+	padding: 5px;
+	min-height: 20px;
+}
+.codeText
+{
+	font-family: Courier New;
+	padding: 5px;
+}
